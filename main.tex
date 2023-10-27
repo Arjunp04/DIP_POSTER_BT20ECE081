@@ -1,0 +1,293 @@
+% Gemini theme
+% See: https://rev.cs.uchicago.edu/k4rtik/gemini-uccs
+% A fork of https://github.com/anishathalye/gemini
+
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[size=custom,width=30,height=48,scale=1.0]{beamerposter}
+\geometry{paperwidth=30in,paperheight=48in}
+\usetheme{gemini}
+\usecolortheme{ucf}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{microtype}
+\usepackage{multicol}
+\pgfplotsset{compat=1.17}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{\textbf{Poster Presentation on}\\
+``An Approach to Embed Image\\ in Video as Digital Watermark''}
+
+\author{Arjun R. Prajapati}
+
+\institute[IIITN]{\textit{Indian Institute of Information Technology, Nagpur}}
+
+
+
+
+
+% ====================
+% Footer (optional)
+% ====================
+
+
+\footercontent{
+  \href{https://iiitn.ac.in}{https://iiitn.ac.in} \hfill
+ Department of ECE, October 2023 \hfill
+  \href{mailto:arjunprajapati4102001@gmail.com}{arjunprajapati4102001@gmail.com}}
+\begin{document}
+\addtobeamertemplate{headline}{}
+{
+    \begin{tikzpicture}[remember picture,overlay]
+      \node [anchor=north west, inner sep=3cm] at ([xshift=0.0cm,yshift=3cm]current page.north west)
+      {\includegraphics[height=12cm]{images and logos/iiitn_logo.png}}; % also try shield-white.eps
+      \node [anchor=north east, inner sep=3cm] at ([xshift=-1.0cm,yshift=2cm]current page.north east)
+       {\includegraphics[height=12cm]{images and logos/qrcode_final.pdf}}; %
+       
+    \end{tikzpicture}
+}
+
+\begin{frame}[t]
+\begin{columns}[t]
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+  \begin{block}{Abstract}
+     
+In today's digital world, copyright protection of digital contents, ownership proof has become a critical issue. To overcome these challenges a blind invisible dual video watermarking approach is discussed. This method involves embedding a watermark image at the second level of the Discrete Wavelet Transform (DWT) and further enhancing it by embedding it into the third level DWT, focusing solely on the video's luminance component. This invisible watermark safeguards copyrights and prevents unauthorized use. The approach analyzes execution time, Peak Signal to Noise Ratio (PSNR), Mean Square Error (MSE), and Normalized Correlation Coefficient (NCC) in the embedding and extraction processes.
+ \end{block}
+\\
+  \begin{block}{Introduction}
+
+    This involves embedding an image in a video, which is primarily in the spatial domain. Additionally, it utilizes 
+ the Discrete Wavelet Transform (DWT), which operates in the frequency domain.
+\parThe approach's steps are depicted in Figures 1 and 2.
+
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{images and logos/embeddingBD.png}
+    \caption{Watermark Embedding Block Diagram}
+    \label{fig:img1}
+\end{figure}
+\lipsum
+
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{images and logos/extraction_blockdiagram.pdf}
+    \caption{Watermark Extraction Block Diagram}
+    \label{fig:img1}
+\end{figure}
+\lipsum
+
+\end{block}
+
+\begin{block}{Approach}
+
+ The main objective is to secure the motion video and simultaneously add the watermark image (secret image) without affecting the quality.
+  Unlike traditional video watermarking techniques that use a single image, this method embeds a watermarked image into the video. 
+  \lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth , height=15cm]{images and logos/orginal video frame.pdf}
+\caption{One frame of Original Video}
+    \label{fig:img1}
+\end{figure}
+\lipsum
+
+  \par To achieve this, a watermark image is generated through Discrete Wavelet Transform (DWT), obtaining different frequency subbands : LL, HL, LH, HH as shown in Fig.3
+  \par Pairs of elements with similar values are identified in the left singular value matrix and modified to embed the watermark content.
+  
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\textwidth , height = 15cm]{images and logos/bandsdwt.pdf}
+  \caption{DWT Bands}
+    \label{fig:img1}
+
+\end{figure}
+\lipsum
+    The two images are then overlaid, creating an invisible watermark image. Next, First video is being converted into frames then processed using third-level DWT, and the watermark image is embedded into the video. This process is followed by the extraction of the watermark image from the frames.
+ \end{block}
+ 
+\end{column}
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+\begin{block}{Watermark Embedding Process}
+\par The embedding is done with the 
+video frame, watermark image along with an embedding 
+strength parameter x.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth, height = 41cm]{images and logos/Embedding algo1.pdf}
+    \caption{Flowchart of Watermark Embedding}
+    \label{fig4:img3}
+\end{figure}
+ An embedding function 'a' is used to add the two sub bands using equation New LL3 = LL3 + a* wLL3. This watermarked image is embedded in the input 
+video frames
+\end{block}
+
+\begin{block}{Watermark Extraction Process}
+
+ The watermark extraction is the reverse of the 
+watermark embedding procedure.
+
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth , height = 37cm]{images and logos/Extraction Algo .pdf}
+     \caption{Flowchart of Watermark Extraction}
+    \label{fig:img1}
+\end{figure}
+\lipsum
+ Extraction is done to acquire wLL3 with the same 
+value of 'a' as in embedding with equation
+ wLL3 = newLL3 – LL3 / a
+
+\end{block}
+
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{\colwidth}
+
+ \begin{block}{Performance Analysis Factors}
+ 
+\\ * Execution time to construct a watermark.
+\\ * Higher PSNR indicates better quality and visibility of extrated image .
+\\ * Lower MSE implies improved visual quality.
+\\ * NCC to assess watermark extraction quality.
+
+ \end{block}
+
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{images and logos/watermark image.pdf}
+    \caption{Watermark image}
+    \label{fig:img1}
+\end{figure}
+\lipsum
+
+\begin{multicols}{2}
+% Content for the left column
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth , height = 15cm]{images and logos/embedded video frame.pdf}
+   
+\end{figure}
+\lipsum
+\columnbreak
+% Content for the right column
+\lipsum
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth , height = 15cm]{images and logos/extracted image.pdf}
+ 
+    \label{fig:img1}
+\end{figure}
+\lipsum
+
+\end{multicols}
+
+
+\centering{Figure 8. Embedded video and Extracted image}
+\vspace{\baselineskip} % Add a line gap
+
+
+
+
+\begin{block}{Simulation Results}
+
+     Watermark embedding strength:
+    \begin{itemize}
+        \item Ensures minimal degradation in watermarked images and maximizes extraction quality (PSNR and NCC).
+        \item Low values resist alteration but are hard to extract.
+        \item High values may make the watermark visible.
+    \end{itemize}
+
+
+   % Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\begin{tabular}{@{}|cl|c|c|c|@{}}
+\toprule
+\multicolumn{2}{|c|}{\textbf{Embedding   Strength}} & \textbf{MSE} & \textbf{PSNR} & \textbf{NCC} \\ \midrule
+\multicolumn{2}{|c|}{0.1}                           & 0.0068       & 160.7011      & 1            \\ \midrule
+\multicolumn{2}{|c|}{3.1}                           & 0.2115       & 126.3612      & 1            \\ \midrule
+\multicolumn{2}{|c|}{4.1}                           & 0.4161       & 119.5924      & 1            \\ \midrule
+\multicolumn{2}{|c|}{9.1}                           & 0.6208       & 115.5925      & 1            \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Table shows that PSNR and MSE change inversely with embedding strength, while NCC remains constant across different embedding values.
+
+\end{block}
+
+\begin{block}{Conclusion}
+
+   In summary, digital watermarking is a technique used to embed hidden data within text, images, or videos to verify ownership and enhance copyright protection. This work presents a blind invisible dual watermarking method for image authentication. The performance analysis, including a PSNR score of 160.7011dB, demonstrates the approach's high invisibility. Metrics like MSE (0.0068) and NCC (1) confirm the watermark's resilience against attacks.
+
+\end{block}
+
+\begin{block}{Acknowledgments}
+
+   I'm extremely grateful to Dr.Tapan Jain for sharing their knowledge and guidance and all other faculties of IIIT Nagpur to give their valuable time to provide me an opportunity to work and present on this topic.
+
+\end{block}
+
+\begin{block}{References}
+
+[1] Ambadekar, Sarita P., Jayshree Jain, and JayshreeKhanapuri, 
+“Digital Image Watermarking Through Encryption and DWT for 
+Copyright Protection”, Recent Trends in Signal and Image 
+Processing, Springer, pp. 187-195, 2019.
+
+[2] Sumedh P. Ingale et al, International Journal of Computer Science and Mobile Computing, Vol.5 Issue.5, May- 2016, pg. 01-09
+
+[3] Nagajyothi. T , Dr. Amit Kr. Jain, 2020, An Approach to Embed Image in Video as Digital Watermark, INTERNATIONAL JOURNAL OF ENGINEERING RESEARCH & TECHNOLOGY (IJERT) Volume 09, Issue 01 (January 2020),
+
+
+
+% \bibliographystyle{plain}
+% \bibliography{poster}
+
+\end{block}
+\end{column}
+
+\separatorcolumn
+\end{columns}
+\end{frame}
+
+\end{document}
